@@ -11,7 +11,6 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
 
     async function search() {
-        debugger;
         setLoading(true);
         try {
             const data = await fetchTracks(query);
