@@ -1,20 +1,22 @@
 'use client'
 
-import {useEffect, useState} from 'react'
-
+import {useEffect, useState, useRef} from 'react'
+import {useInView} from "react-intersection-observer"
 import {AudioCard} from "@/components/AudioCard"
-import {AudioTrack, fetchTracks} from "@/lib/api";
+import {Play, fetchTracks} from "@/lib/api";
 
 export default function Home() {
     const [query, setQuery] = useState('')
-    const [tracks, setTracks] = useState<AudioTrack[]>([]);
+    const [tracks, setTracks] = useState<Play[]>([]);
+    // todo think about default value for cursor
+    const [cursor, setCursor] = useState<number>(0);
     const [loading, setLoading] = useState(false);
 
     async function search() {
         setLoading(true);
         try {
             const data = await fetchTracks(query);
-            setTracks(data);
+            setTracks(data.plays);
         } catch (err) {
             console.error(err);
         } finally {
