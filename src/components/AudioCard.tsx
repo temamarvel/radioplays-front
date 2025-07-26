@@ -29,7 +29,7 @@ type AudioCardProps = {
 
 export function AudioCard({ title, thumbnails }: AudioCardProps) {
     return (
-        <div className="bg-zinc-800 rounded-xl shadow-md overflow-hidden flex flex-col aspect-square">
+        <div className="w-full max-w-[300px] bg-zinc-800 rounded-xl shadow-md overflow-hidden flex flex-col aspect-square">
             {/* Верх: заголовок */}
             <div className="p-3 border-b border-zinc-700">
                 <h2 className="text-sm font-medium text-white leading-snug break-words">

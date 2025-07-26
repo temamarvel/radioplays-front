@@ -66,6 +66,22 @@ export default function Home() {
         },
         {
             title: "Конёк-Горбунок",
+            thumbnails: [ ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [ ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [ ],
+        },{
+            title: "Конёк-Горбунок",
+            thumbnails: [ ],
+        },
+
+        {
+            title: "Конёк-Горбунок",
             thumbnails: [
                 "/test_thumb.webp",
                 "/test_thumb.webp",
@@ -81,7 +97,7 @@ export default function Home() {
                 "/test_thumb.webp",
                 "/test_thumb.webp",
             ],
-        },{
+        }, {
             title: "Конёк-Горбунок",
             thumbnails: [
                 "/test_thumb.webp",
@@ -138,20 +154,21 @@ export default function Home() {
             </div>
 
             {/* Сетка карточек */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="justify-center grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
                 {/* Тут позже будут карточки */}
 
                 {loading ? (
                     <p>Загрузка...</p>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {/*{tracks.map((track) => (*/}
-                        {/*    <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />*/}
-                        {/*))}*/}
-                        {dummyData.map((item, index) => (
-                            <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>
-                        ))}
-                    </div>
+
+                    // tracks.map((track) => (
+                    //     <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />
+                    // ))
+
+                    dummyData.map((item, index) => (
+                        <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>
+                    ))
+
                 )}
 
 
