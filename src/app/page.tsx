@@ -12,6 +12,96 @@ export default function Home() {
     const [cursor, setCursor] = useState<number>(0);
     const [loading, setLoading] = useState(false);
 
+    const dummyData = [
+        {
+            title: "Сказка про Репку",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Золотой Петушок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },{
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+        {
+            title: "Конёк-Горбунок",
+            thumbnails: [
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+                "/test_thumb.webp",
+            ],
+        },
+    ]
+
+
     async function search() {
         setLoading(true);
         try {
@@ -55,8 +145,11 @@ export default function Home() {
                     <p>Загрузка...</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {tracks.map((track) => (
-                            <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />
+                        {/*{tracks.map((track) => (*/}
+                        {/*    <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />*/}
+                        {/*))}*/}
+                        {dummyData.map((item, index) => (
+                            <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>
                         ))}
                     </div>
                 )}
