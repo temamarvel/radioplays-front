@@ -5,13 +5,13 @@ export interface Play {
     audio_urls: string[];
 }
 
-export async function fetchTracks(query: string, cursor?: number, limit?: number): Promise<{ plays: Play[]; cursor: string | null; }> {
+export async function fetchTracks(query: string, cursor: number | null, limit: number = 20): Promise<{ plays: Play[]; cursor: number | null; }> {
     const params = new URLSearchParams();
     params.append("search_text", query);
     if (cursor)
         params.append("after_id", cursor.toString());
     if (limit)
-        params.append("after_id", limit.toString());
+        params.append("limit", limit.toString());
 
     const res = await fetch(`http://127.0.0.1:8000/tracks?${params.toString()}`);
     if (!res.ok) throw new Error("Ошибка загрузки");

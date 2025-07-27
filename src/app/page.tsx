@@ -9,120 +9,124 @@ export default function Home() {
     const [query, setQuery] = useState('')
     const [tracks, setTracks] = useState<Play[]>([]);
     // todo think about default value for cursor
-    const [cursor, setCursor] = useState<number>(0);
+    const [cursor, setCursor] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
 
-    const dummyData = [
-        {
-            title: "Сказка про Репку",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Золотой Петушок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [ ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [ ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [ ],
-        },{
-            title: "Конёк-Горбунок",
-            thumbnails: [ ],
-        },
+    // const dummyData = [
+    //     {
+    //         title: "Сказка про Репку",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Золотой Петушок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [ ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [ ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [ ],
+    //     },{
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [ ],
+    //     },
+    //
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     }, {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    //     {
+    //         title: "Конёк-Горбунок",
+    //         thumbnails: [
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //             "/test_thumb.webp",
+    //         ],
+    //     },
+    // ]
 
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        }, {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-        {
-            title: "Конёк-Горбунок",
-            thumbnails: [
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-                "/test_thumb.webp",
-            ],
-        },
-    ]
 
-
-    async function search() {
+    async function loadMore() {
+        if (loading || !hasMore) return;
         setLoading(true);
         try {
-            const data = await fetchTracks(query);
-            setTracks(data.plays);
+            const response = await fetchTracks(query, cursor);
+            setTracks((prev) => [...prev, ...response.plays]);
+            setCursor(response.cursor);
+            setHasMore(!!response.cursor); // если null — больше нет
         } catch (err) {
             console.error(err);
         } finally {
@@ -130,53 +134,64 @@ export default function Home() {
         }
     }
 
+    const { ref, inView } = useInView({
+        threshold: 0.5, // вызывается когда 50% sentinel в зоне видимости
+        triggerOnce: false,
+    });
+
     useEffect(() => {
+        setTracks([]);
+        setCursor(null);
+        setHasMore(true);
         (async () => {
-            await search();
-        })();
+            await loadMore();
+        })()
     }, []);
+
+    useEffect(() => {
+        if (inView) {
+            (async () => {
+                await loadMore();
+            })()
+        }
+    }, [inView]);
 
     return (
         <main className="min-h-screen px-4 py-8 bg-zinc-950 text-white">
-            {/* Название сайта */}
             <h1 className="text-4xl font-bold mb-6 text-center">Retrofon</h1>
 
-            {/* Поисковая строка */}
             <div className="flex justify-center mb-8">
                 <input
                     type="text"
                     placeholder="Поиск аудиозаписей..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && search()}
+                    onKeyDown={(e) => e.key === "Enter" && loadMore()}
                     className="w-full max-w-xl px-4 py-2 rounded-xl bg-zinc-800 text-white placeholder-gray-400"
                 />
             </div>
 
-            {/* Сетка карточек */}
             <div className="justify-center grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
-                {/* Тут позже будут карточки */}
-
-                {loading ? (
-                    <p>Загрузка...</p>
-                ) : (
-
-                    // tracks.map((track) => (
-                    //     <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />
-                    // ))
-
-                    dummyData.map((item, index) => (
-                        <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>
-                    ))
-
-                )}
-
+                {tracks.map((track) => (
+                    <AudioCard key={track.id} title={track.name} thumbnails={track.cover_urls} />
+                ))}
 
                 {/*{dummyData.map((item, index) => (*/}
                 {/*    <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>*/}
                 {/*))}*/}
-
             </div>
+
+            {loading && (
+                <p className="text-center mt-4 text-gray-400">Загрузка...</p>
+            )}
+
+            {hasMore && (
+                <div ref={ref} className="h-10 mt-8" />
+            )}
+
+            {!hasMore && (
+                <p className="text-center mt-4 text-gray-500">Больше записей нет</p>
+            )}
         </main>
     )
 }
