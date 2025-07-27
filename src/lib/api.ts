@@ -1,3 +1,5 @@
+import {env} from "@/lib/env";
+
 export interface Play {
     id: number;
     name: string;
@@ -13,7 +15,7 @@ export async function fetchTracks(query: string, cursor: number | null, limit: n
     if (limit)
         params.append("limit", limit.toString());
 
-    const res = await fetch(`http://127.0.0.1:8000/tracks?${params.toString()}`);
+    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}tracks?${params.toString()}`);
     if (!res.ok) throw new Error("Ошибка загрузки");
 
     return res.json();
