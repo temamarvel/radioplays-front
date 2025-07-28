@@ -15,7 +15,7 @@ export async function fetchTracks(query: string, cursor: number | null, limit: n
     if (limit)
         params.append("limit", limit.toString());
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}tracks?${params.toString()}`);
+    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}tracks/?${params.toString()}`);
     if (!res.ok) throw new Error("Ошибка загрузки");
 
     return res.json();
