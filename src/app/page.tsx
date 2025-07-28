@@ -138,8 +138,13 @@ export default function Home() {
         threshold: 0.5, // вызывается когда 50% sentinel в зоне видимости
         triggerOnce: false,
     });
+    
+    const didLoad = useRef(false);
 
     useEffect(() => {
+        if (didLoad.current) return;
+        didLoad.current = true;
+
         setTracks([]);
         setCursor(null);
         setHasMore(true);
