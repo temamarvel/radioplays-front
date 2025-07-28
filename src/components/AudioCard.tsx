@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 type AudioCardProps = {
+    id: number
     title: string
     thumbnails: string[]
 }
@@ -27,35 +30,37 @@ type AudioCardProps = {
 // }
 
 
-export function AudioCard({ title, thumbnails }: AudioCardProps) {
+export function AudioCard({id, title, thumbnails}: AudioCardProps) {
     return (
-        <div className="w-full max-w-[300px] bg-zinc-800 rounded-xl shadow-md overflow-hidden flex flex-col aspect-square">
-            {/* Верх: заголовок */}
-            <div className="p-3 border-b border-zinc-700">
-                <h2 className="text-sm font-medium text-white leading-snug break-words">
-                    {title}
-                </h2>
-            </div>
+        <Link href={`/tracks/${id}`}>
+            <div className="w-full max-w-[300px] bg-zinc-800 rounded-xl shadow-md overflow-hidden flex flex-col aspect-square">
+                {/* Верх: заголовок */}
+                <div className="p-3 border-b border-zinc-700">
+                    <h2 className="text-sm font-medium text-white leading-snug break-words">
+                        {title}
+                    </h2>
+                </div>
 
-            {/* Низ: горизонтальная галерея */}
-            <div className="flex-1 overflow-hidden">
-                <div className="flex gap-2 overflow-x-auto h-full p-2">
-                    {thumbnails && thumbnails.length > 0 ? (
-                        thumbnails.map((url, idx) => (
-                            <img
-                                key={idx}
-                                src={url}
-                                alt={`thumbnail-${idx}`}
-                                className="h-full aspect-square rounded-lg object-cover flex-shrink-0"
-                            />
-                        ))
-                    ) : (
-                        <div className="text-sm text-gray-400 flex items-center justify-center w-full h-full">
-                            нет обложек
-                        </div>
-                    )}
+                {/* Низ: горизонтальная галерея */}
+                <div className="flex-1 overflow-hidden">
+                    <div className="flex gap-2 overflow-x-auto h-full p-2">
+                        {thumbnails && thumbnails.length > 0 ? (
+                            thumbnails.map((url, idx) => (
+                                <img
+                                    key={idx}
+                                    src={url}
+                                    alt={`thumbnail-${idx}`}
+                                    className="h-full aspect-square rounded-lg object-cover flex-shrink-0"
+                                />
+                            ))
+                        ) : (
+                            <div className="text-sm text-gray-400 flex items-center justify-center w-full h-full">
+                                нет обложек
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

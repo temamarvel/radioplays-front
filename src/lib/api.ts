@@ -20,3 +20,9 @@ export async function fetchTracks(query: string, cursor: number | null, limit: n
 
     return res.json();
 }
+
+export async function fetchTrackById(id: string) {
+    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}tracks/${id}`);
+    if (!res.ok) return null;
+    return res.json();
+}
