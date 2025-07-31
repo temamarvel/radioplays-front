@@ -1,14 +1,15 @@
 import { fetchTrackById } from "@/lib/api";
 import { notFound } from "next/navigation";
 
-type Props = {
-    params: {
+type TrackPageParams = {
+    params: Promise<{
         id: string;
-    };
+    }>;
 };
 
-export default async function TrackPage({ params }: Props) {
-    const track = await fetchTrackById(params.id);
+export default async function TrackPage({ params }: TrackPageParams) {
+    const { id } = await params;
+    const track = await fetchTrackById(id);
 
     if (!track) {
         notFound();
