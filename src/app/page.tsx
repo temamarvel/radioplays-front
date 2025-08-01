@@ -178,7 +178,7 @@ export default function Home() {
 
             <div className="justify-center grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
                 {tracks.map((track) => (
-                    <AudioCard key={track.id} id={track.id} title={track.name} thumbnails={track.cover_urls} />
+                    <AudioCard key={track.id} id={track.id} title={track.name} thumbnails={track.thumbnail_urls} />
                 ))}
 
                 {/*{dummyData.map((item, index) => (*/}

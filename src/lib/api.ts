@@ -3,8 +3,9 @@ import {env} from "@/lib/env";
 export interface Play {
     id: number;
     name: string;
-    cover_urls: string[];
     audio_urls: string[];
+    cover_urls: string[];
+    thumbnail_urls: string[];
 }
 
 export async function fetchTracks(query: string, cursor: number | null, limit: number = 20): Promise<{ plays: Play[]; cursor: number | null; }> {
