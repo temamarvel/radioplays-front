@@ -162,8 +162,10 @@ export default function Home() {
     }, [inView]);
 
     return (
-        <main className="min-h-screen px-4 py-8 bg-zinc-950 text-white">
+        <main className="h-screen overflow-hidden bg-zinc-950 text-white flex flex-col">
+            <header className="fixed top-0 left-0 w-full z-10 backdrop-blur-md bg-zinc-900/30 border-b border-white/10 shadow-md">
             <h1 className="text-4xl font-bold mb-6 text-center">Retrofon</h1>
+
 
             <div className="flex justify-center mb-8">
                 <input
@@ -175,8 +177,11 @@ export default function Home() {
                     className="w-full max-w-xl px-4 py-2 rounded-xl bg-zinc-800 text-white placeholder-gray-400"
                 />
             </div>
+            </header>
 
-            <div className="justify-center grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+            {/*todo заменить хардкод pt-[140px] на димическую привязку к высоте хедера*/}
+            <section className="flex-1 overflow-y-auto overscroll-none max-w-6xl mx-auto pt-[140px] grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+            {/*<div className="justify-center grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">*/}
                 {tracks.map((track) => (
                     <AudioCard key={track.id} id={track.id} title={track.name} thumbnails={track.thumbnail_urls} />
                 ))}
@@ -184,7 +189,8 @@ export default function Home() {
                 {/*{dummyData.map((item, index) => (*/}
                 {/*    <AudioCard key={index} title={item.title} thumbnails={item.thumbnails}/>*/}
                 {/*))}*/}
-            </div>
+            {/*</div>*/}
+
 
             {loading && (
                 <p className="text-center mt-4 text-gray-400">Загрузка...</p>
@@ -197,6 +203,8 @@ export default function Home() {
             {!hasMore && (
                 <p className="text-center mt-4 text-gray-500">Больше записей нет</p>
             )}
+
+            </section>
         </main>
     )
 }
