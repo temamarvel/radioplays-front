@@ -142,6 +142,7 @@ export default function Home() {
     const didLoad = useRef(false);
 
     useEffect(() => {
+        //fix it with abortcontroller
         if (didLoad.current) return;
         didLoad.current = true;
 
